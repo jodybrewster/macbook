@@ -140,6 +140,7 @@ if ! type_exists 'npm'; then
 
     # Install npm
     run_npm
+    printf 'export PATH="$HOME/.node/bin:$PATH"\n' >> ~/.zshrc
 
 fi
 
