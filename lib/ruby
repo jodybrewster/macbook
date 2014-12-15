@@ -12,8 +12,10 @@ run_ruby() {
       rbenv install -s "$ruby_version"
 
       e_process "Setting $ruby_version as global default Ruby ..."
-        rbenv global "$ruby_version"
-        rbenv rehash
+      export PATH="$HOME/.rbenv/bin:$PATH"
+      eval "$(rbenv init -)"
+      rbenv global "$ruby_version"
+      rbenv rehash
     fi
 
     e_process "Updating to latest Rubygems version ..."
