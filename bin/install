@@ -1,0 +1,217 @@
+#!/usr/bin/env bash
+
+export macbook="${HOME}/.macbook"
+export MACBOOK_LOG="${HOME}/Library/Logs/macbook.log"
+export GITHUB_USER="jodybrewster"
+
+# If missing, download and extract the macbook repository
+if [[ ! -d "${MACBOOK}" ]]; then
+
+    # no bash directory found
+    printf "$(tput bold ; tput setaf 3)⚠ Warning: $(tput sgr0)%s!\n" "No ${MACBOOK} found"
+
+    # create directory
+    printf "$(tput setaf 6)┃ $(tput sgr0)$(tput setaf 7)%s...$(tput sgr0)\n" "Creating directory at ${MACBOOK}"
+    mkdir -p "${MACBOOK}"
+
+    # Download the repository as a tarball
+    printf "$(tput setaf 6)┃ $(tput sgr0)$(tput setaf 7)%s...$(tput sgr0)\n" "Downloading repository to /tmp directory"
+    # (-#) shows the progress bar as # sign
+    # (-f) fail silently
+    # (-L) follow the headers
+    # (-o) output to a file
+    curl -#fLo /tmp/macbook.tar.gz "https://github.com/${GITHUB_USER}/macbook/tarball/master"
+    # (-s) silent mode, show no errors or progress
+    # (-S) with -s, only show the errors
+    # curl -fsSLo /tmp/macbook.tar.gz "https://github.com/${GITHUB_USER}/macbook/tarball/master"
+
+    # Extract to the macbook directory
+    printf "$(tput setaf 6)┃ $(tput sgr0)$(tput setaf 7)%s...$(tput sgr0)\n" "Extracting files to ${MACBOOK}"
+    tar -zxf /tmp/macbook.tar.gz --strip-components 1 -C "${MACBOOK}"
+
+    # Remove the tarball
+    printf "$(tput setaf 6)┃ $(tput sgr0)$(tput setaf 7)%s...$(tput sgr0)\n" "Removing tarball from /tmp directory"
+    rm -rf /tmp/macbook.tar.gz
+
+    printf "$(tput setaf 2)✓ Success: $(tput sgr0)%s.\n" "${MACBOOK} created, repository downloaded and extracted"
+fi
+
+
+# Change to the macbook directory
+cd "${MACBOOK}"
+
+# Source the necessary files and helper scripts
+source ./bin/brew
+source ./bin/cask
+source ./bin/font
+source ./bin/quicklook
+source ./bin/npm
+source ./lib/git
+source ./lib/ruby
+source ./lib/utils
+source ./lib/sublime
+
+
+# Before relying on Homebrew, check that packages can be compiled
+if ! type_exists 'gcc'; then
+    e_error "The XCode Command Line Tools must be installed first."
+    printf "  run 'xcode-select --install' and follow the instrucctions\n"
+    printf "  Then run this setup script again.\n"
+    exit 1
+fi
+
+
+#     __  __                     __                     
+#    / / / /___  ____ ___  ___  / /_  ________ _      __
+#   / /_/ / __ \/ __ `__ \/ _ \/ __ \/ ___/ _ \ | /| / /
+#  / __  / /_/ / / / / / /  __/ /_/ / /  /  __/ |/ |/ / 
+# /_/ /_/\____/_/ /_/ /_/\___/_.___/_/   \___/|__/|__/  
+                                                      
+
+# Check for Homebrew
+if ! type_exists 'brew'; then
+    e_process "Installing Homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+    # Install Homebrew formulae via Brewfile
+    e_process "Installing Homebrew packages"
+    run_brew
+fi
+
+#          __                                          __  
+#   ____  / /_        ____ ___  __  __     ____  _____/ /_ 
+#  / __ \/ __ \______/ __ `__ \/ / / /____/_  / / ___/ __ \
+# / /_/ / / / /_____/ / / / / / /_/ /_____// /_(__  ) / / /
+# \____/_/ /_/     /_/ /_/ /_/\__, /      /___/____/_/ /_/ 
+#                            /____/                        
+
+if [ ! -d "${HOME}/.oh-my-zsh" ]; then
+    e_process "Installing oh-my-zsh"
+
+    #Install oh-my-zsh
+    curl -L http://install.ohmyz.sh | sh
+
+    #setup rbenv
+    if ! grep -qs "rbenv init" ~/.zshrc; then
+        printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.zshrc
+        printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.zshrc
+
+        e_process "Enable shims and autocompletion ..."
+        eval "$(rbenv init - --no-rehash)"
+    fi
+
+    export PATH="$HOME/.rbenv/bin:$PATH"
+fi
+
+#     ____        __         
+#    / __ \__  __/ /_  __  __
+#   / /_/ / / / / __ \/ / / /
+#  / _, _/ /_/ / /_/ / /_/ / 
+# /_/ |_|\__,_/_.___/\__, /  
+#                   /____/   
+
+
+e_process "Installing ruby & gem files"
+
+# Check for rbenv
+if type_exists 'rbenv'; then
+
+    # Install Ruby
+    run_ruby
+
+else
+    printf "\n"
+    e_error "Error: rbenv not found."
+    printf "Aborting...\n"
+    exit
+fi
+
+
+#       __  ___       
+#    /\ \ \/ _ \/\/\  
+#   /  \/ / /_)/    \ 
+#  / /\  / ___/ /\/\ \
+#  \_\ \/\/   \/    \/ 
+
+
+e_process "Installing npm & packages"
+
+# Check for npm
+if !type_exists 'npm'; then
+
+    # Install npm
+    run_npm
+
+else
+    #printf "\n"
+    #e_error "Error: npm not found."
+    #printf "Aborting...\n"
+    #exit 
+    printf ''
+fi
+
+
+e_success "All packages have been installed"
+
+
+#        __      __  _____ __         
+#   ____/ /___  / /_/ __(_) /__  _____
+#  / __  / __ \/ __/ /_/ / / _ \/ ___/
+# / /_/ / /_/ / /_/ __/ / /  __(__  ) 
+# \__,_/\____/\__/_/ /_/_/\___/____/  
+                                    
+
+# Ask before potentially overwriting files
+seek_confirmation "This step may overwrite your existing macbook"
+
+if is_confirmed; then
+    # Symlink all necessary files
+#    homesick clone ${GITHUB_USER}/macbook
+ #   homesick symlink macbook
+
+    e_success "All files have been symlinked"
+
+    # Setup git authorship
+    setup_git_author
+
+else
+    e_error "This step is required.  When you're ready, run this script to start up again"
+fi
+
+#    ____  _____    _  __    ___                    
+#   / __ \/ ___/   | |/ /   /   |  ____  ____  _____
+#  / / / /\__ \    |   /   / /| | / __ \/ __ \/ ___/
+# / /_/ /___/ /   /   |   / ___ |/ /_/ / /_/ (__  ) 
+# \____//____/   /_/|_|  /_/  |_/ .___/ .___/____/  
+#                              /_/   /_/            
+
+# Ask installing OS X Applications?
+seek_confirmation "Do you want to install Mac OS X Applications?"
+
+if is_confirmed; then
+
+    e_process "Installing Mac OS X Applications"
+    run_apps
+    
+    e_process "Installing Mac OS X fonts"
+    run_fonts
+
+    e_process "Installing Mac OS X Quick Look plugins for developers"
+    run_ql
+
+    e_process "Installing ST2 plugins"
+    run_subl
+
+    e_success "All Mac OS X Applications have been installed"
+
+    e_warning "Please consider using cask commands for Updating/Upgrading or Uninstalling a Mac OS X Application"
+fi
+
+e_process "Installing vim"
+
+curl "http://j.mp/spf13-vim3 -L -o - | sh"
+
+
+figlet -k 'Finished! WOOHOO!!!'  
+
+e_success "Your MAC is ready to rock!"

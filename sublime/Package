@@ -1,0 +1,20 @@
+{
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"ASCII Decorator",
+		"BracketHighlighter",
+		"CoffeeScript",
+		"Emmet",
+		"Jade",
+		"JavaScript Snippets",
+		"JsFormat",
+		"SublimeLinter",
+		"Markdown Preview",
+		"Package Control",
+		"Sass",
+		"Theme - Soda",
+		"Theme - Spacegray",
+		"Trimmer"
+	]
+}

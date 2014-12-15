@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# Install command-line tools using Homebrew
+run_brew() {
+	
+	# Make sure we’re using the latest Homebrew
+	brew update
+
+
+	# Upgrade any already-installed formulae
+	brew upgrade
+
+	brew tap thoughtbot/formulae
+	brew install gitsh	
+
+	brew tap caskroom/cask
+	brew install brew-cask
+	brew upgrade brew-cask
+
+	brew install git-flow
+
+	brew install bash
+	brew install zsh
+
+	brew install wget --enable-iri
+
+	# rbenv 
+	brew install rbenv
+	brew install rbenv-gem-rehash
+	brew install ruby-build
+	brew upgrade ruby-build
+
+
+	brew link openssl --force
+
+
+	# misc
+	brew install node
+	brew install autoconf
+	brew install mongodb		
+	brew install ossp-uuid	
+	brew install pkg-config
+	brew install postgresql
+	brew install python --universal --framework
+	brew install nginx
+	brew install redis
+
+	#tmux
+	brew install tmux
+	brew install reattach-to-user-namespace
+
+	# docker 
+	brew install docker
+	brew install boot2docker
+
+	#ios
+	brew install xctool
+
+	#android
+	brew install ant
+	brew install maven
+	brew install gradle
+	brew install android-sdk
+	brew install android-ndk
+
+	# Remove outdated versions from the cellar
+	brew cleanup
+
+
+}
