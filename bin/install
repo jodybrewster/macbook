@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export macbook="${HOME}/.macbook"
+export MACBOOK="${HOME}/.macbook"
 export MACBOOK_LOG="${HOME}/Library/Logs/macbook.log"
 export GITHUB_USER="jodybrewster"
 
