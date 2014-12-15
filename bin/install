@@ -202,7 +202,7 @@ fi
 
 e_process "Installing vim"
 
-curl "http://j.mp/spf13-vim3 -L -o - | sh"
+curl http://j.mp/spf13-vim3 -L -o - | sh
 
 
 figlet -k 'Finished! WOOHOO!!!'  
