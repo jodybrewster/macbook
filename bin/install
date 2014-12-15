@@ -53,7 +53,7 @@ source ./lib/sublime
 source ./bin/osx
 
 # Before relying on Homebrew, check that packages can be compiled
-if ! type_exists 'gcc'; then
+if [ ! type_exists 'gcc' ]; then
     e_error "The XCode Command Line Tools must be installed first."
     printf "  run 'xcode-select --install' and follow the instrucctions\n"
     printf "  Then run this setup script again.\n"
@@ -117,8 +117,7 @@ fi
 e_process "Installing ruby & gem files"
 
 # Check for rbenv
-if [ type_exists 'rbenv' ]; then
-
+if type_exists 'rbenv'; then
     # Install Ruby
     run_ruby
 else

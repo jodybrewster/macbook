@@ -3,7 +3,7 @@
 logging() {
 
     # write your test however you want; this just tests if SILENT is non-empty
-    if [ -n "$SILENT" ]; then
+    if [[ -n "$SILENT" ]]; then
         "$@" &> /dev/null
     else
         "$@"
@@ -69,7 +69,7 @@ is_git_repo() {
 # Test whether a command exists
 # $1 - cmd to test
 type_exists() {
-    if [ $(type -P $1) ]; then
+    if [[ $(type -P $1) ]]; then
       return 0
     fi
     return 1
