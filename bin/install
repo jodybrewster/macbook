@@ -136,7 +136,7 @@ fi
 e_process "Installing npm & packages"
 
 # Check for npm
-if !type_exists 'npm'; then
+if ! type_exists 'npm'; then
 
     # Install npm
     run_npm
