@@ -114,11 +114,15 @@ fi
 e_process "Installing ruby & gem files"
 
 # Check for rbenv
-if !type_exists 'rbenv'; then
+if type_exists 'rbenv'; then
 
     # Install Ruby
     run_ruby
-
+else
+    printf "\n"
+    e_error "Error: rbenv not found."
+    printf "Aborting...\n"
+    exit
 fi
 
 
