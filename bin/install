@@ -50,7 +50,7 @@ source ./lib/git
 source ./lib/ruby
 source ./lib/utils
 source ./lib/sublime
-
+source ./bin/osx
 
 # Before relying on Homebrew, check that packages can be compiled
 if ! type_exists 'gcc'; then
@@ -60,13 +60,16 @@ if ! type_exists 'gcc'; then
     exit 1
 fi
 
+e_process "Installing osx customizations"
+run_osx
 
-#     __  __                     __                     
+
+#     __  __                     __
 #    / / / /___  ____ ___  ___  / /_  ________ _      __
 #   / /_/ / __ \/ __ `__ \/ _ \/ __ \/ ___/ _ \ | /| / /
-#  / __  / /_/ / / / / / /  __/ /_/ / /  /  __/ |/ |/ / 
-# /_/ /_/\____/_/ /_/ /_/\___/_.___/_/   \___/|__/|__/  
-                                                      
+#  / __  / /_/ / / / / / /  __/ /_/ / /  /  __/ |/ |/ /
+# /_/ /_/\____/_/ /_/ /_/\___/_.___/_/   \___/|__/|__/
+
 
 # Check for Homebrew
 if ! type_exists 'brew'; then
@@ -78,12 +81,12 @@ if ! type_exists 'brew'; then
     run_brew
 fi
 
-#          __                                          __  
-#   ____  / /_        ____ ___  __  __     ____  _____/ /_ 
+#          __                                          __
+#   ____  / /_        ____ ___  __  __     ____  _____/ /_
 #  / __ \/ __ \______/ __ `__ \/ / / /____/_  / / ___/ __ \
 # / /_/ / / / /_____/ / / / / / /_/ /_____// /_(__  ) / / /
-# \____/_/ /_/     /_/ /_/ /_/\__, /      /___/____/_/ /_/ 
-#                            /____/                        
+# \____/_/ /_/     /_/ /_/ /_/\__, /      /___/____/_/ /_/
+#                            /____/
 
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then
     e_process "Installing oh-my-zsh"
@@ -103,12 +106,12 @@ if [ ! -d "${HOME}/.oh-my-zsh" ]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
-#     ____        __         
+#     ____        __
 #    / __ \__  __/ /_  __  __
 #   / /_/ / / / / __ \/ / / /
-#  / _, _/ /_/ / /_/ / /_/ / 
-# /_/ |_|\__,_/_.___/\__, /  
-#                   /____/   
+#  / _, _/ /_/ / /_/ / /_/ /
+# /_/ |_|\__,_/_.___/\__, /
+#                   /____/
 
 
 e_process "Installing ruby & gem files"
@@ -127,11 +130,11 @@ else
 fi
 
 
-#       __  ___       
-#    /\ \ \/ _ \/\/\  
-#   /  \/ / /_)/    \ 
+#       __  ___
+#    /\ \ \/ _ \/\/\
+#   /  \/ / /_)/    \
 #  / /\  / ___/ /\/\ \
-#  \_\ \/\/   \/    \/ 
+#  \_\ \/\/   \/    \/
 
 
 e_process "Installing npm & packages"
@@ -146,7 +149,7 @@ else
     #printf "\n"
     #e_error "Error: npm not found."
     #printf "Aborting...\n"
-    #exit 
+    #exit
     printf ''
 fi
 
@@ -154,12 +157,12 @@ fi
 e_success "All packages have been installed"
 
 
-#        __      __  _____ __         
+#        __      __  _____ __
 #   ____/ /___  / /_/ __(_) /__  _____
 #  / __  / __ \/ __/ /_/ / / _ \/ ___/
-# / /_/ / /_/ / /_/ __/ / /  __(__  ) 
-# \__,_/\____/\__/_/ /_/_/\___/____/  
-                                    
+# / /_/ / /_/ / /_/ __/ / /  __(__  )
+# \__,_/\____/\__/_/ /_/_/\___/____/
+
 
 # Ask before potentially overwriting files
 seek_confirmation "This step may overwrite your existing macbook"
@@ -178,12 +181,12 @@ else
     e_error "This step is required.  When you're ready, run this script to start up again"
 fi
 
-#    ____  _____    _  __    ___                    
+#    ____  _____    _  __    ___
 #   / __ \/ ___/   | |/ /   /   |  ____  ____  _____
 #  / / / /\__ \    |   /   / /| | / __ \/ __ \/ ___/
-# / /_/ /___/ /   /   |   / ___ |/ /_/ / /_/ (__  ) 
-# \____//____/   /_/|_|  /_/  |_/ .___/ .___/____/  
-#                              /_/   /_/            
+# / /_/ /___/ /   /   |   / ___ |/ /_/ / /_/ (__  )
+# \____//____/   /_/|_|  /_/  |_/ .___/ .___/____/
+#                              /_/   /_/
 
 # Ask installing OS X Applications?
 seek_confirmation "Do you want to install Mac OS X Applications?"
@@ -192,7 +195,7 @@ if is_confirmed; then
 
     e_process "Installing Mac OS X Applications"
     run_apps
-    
+
     e_process "Installing Mac OS X fonts"
     run_fonts
 
@@ -212,6 +215,6 @@ e_process "Installing vim"
 curl "http://j.mp/spf13-vim3 -L -o - | sh"
 
 
-figlet -k 'Finished! WOOHOO!!!'  
+figlet -k 'Finished! WOOHOO!!!'
 
 e_success "Your MAC is ready to rock!"
