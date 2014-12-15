@@ -121,7 +121,6 @@ if type_exists 'rbenv'; then
 
     # Install Ruby
     run_ruby
-
 else
     printf "\n"
     e_error "Error: rbenv not found."
@@ -140,17 +139,21 @@ fi
 e_process "Installing npm & packages"
 
 # Check for npm
-if !type_exists 'npm'; then
+if ! type_exists 'npm'; then
 
     # Install npm
     run_npm
+    printf 'export PATH="$HOME/.node/bin:$PATH"\n' >> ~/.zshrc
 
+<<<<<<< HEAD
 else
     #printf "\n"
     #e_error "Error: npm not found."
     #printf "Aborting...\n"
     #exit
     printf ''
+=======
+>>>>>>> 54f6cd21215020c0cb0efcc5b11f8462e5e7b028
 fi
 
 
@@ -212,7 +215,7 @@ fi
 
 e_process "Installing vim"
 
-curl "http://j.mp/spf13-vim3 -L -o - | sh"
+curl http://j.mp/spf13-vim3 -L -o - | sh
 
 
 figlet -k 'Finished! WOOHOO!!!'

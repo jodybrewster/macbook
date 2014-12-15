@@ -11,6 +11,7 @@ run_npm() {
 	brew install node --without-npm
 	echo prefix=~/.node >> ~/.npmrc
 	curl -L https://www.npmjs.org/install.sh | sh
+	export PATH="$HOME/.node/bin:$PATH"
 
 	npm update
 

@@ -5,15 +5,17 @@ run_ruby() {
     #ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
     ruby_version="2.1.5"
 
-    if [ ! -d "${HOME}/rbenv/versions/${ruby_version}" ]; then
+    if [[ ! -d "${HOME}/.rbenv/versions/${ruby_version}" && ! -L "${HOME}/.rbenv/versions/${ruby_version}" ]]; then
 
       e_process "Installing Ruby $ruby_version ..."
 
       rbenv install -s "$ruby_version"
 
       e_process "Setting $ruby_version as global default Ruby ..."
-        rbenv global "$ruby_version"
-        rbenv rehash
+      export PATH="$HOME/.rbenv/bin:$PATH"
+      eval "$(rbenv init -)"
+      rbenv global "$ruby_version"
+      rbenv rehash
     fi
 
     e_process "Updating to latest Rubygems version ..."
@@ -29,20 +31,8 @@ run_ruby() {
     e_process "Installing Cocoapods"
       gem install cocoapods --no-document
 
-    e_process "Installing Powder"
-      gem install powder --no-document
-
-    e_process "Installing Rake"
-      gem install rake --no-document
-
     e_process "Installing Homesick"
       gem install homesick --no-document
-
-    e_process "Installing chef"
-      gem install chef --no-document
-
-    e_process "librarian-chef"
-      gem install librarian-chef --no-document
 
     [[ $? ]] && e_success "Done"
 }

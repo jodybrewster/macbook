@@ -75,6 +75,16 @@ type_exists() {
     return 1
 }
 
+# check version number
+version_matches () {
+    if [[ $1 == *$2* ]]
+    then
+        return 1
+    else
+    	  return 0
+    fi
+}
+
 # Test whether a Homebrew formula is already installed
 # $1 - formula name (may include options)
 formula_exists() {
