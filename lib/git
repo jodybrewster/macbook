@@ -7,8 +7,8 @@ setup_git_author() {
     e_process "Setting up Git author"
 
     # Variables
-    local GIT_AUTHOR_NAME=""
-    local GIT_AUTHOR_EMAIL=""
+    local GIT_AUTHOR_NAME="jodybrewster"
+    local GIT_AUTHOR_EMAIL="jodybrewster@gmail.com"
 
     # Git author name
     e_question "What's your name"
