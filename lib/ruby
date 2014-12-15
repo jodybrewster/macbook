@@ -5,7 +5,7 @@ run_ruby() {
     #ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
     ruby_version="2.1.5"
 
-    if [ ! -d "${HOME}/rbenv/versions/${ruby_version}" ]; then
+    if [ ! -d "${HOME}/.rbenv/versions/${ruby_version}" ]; then
 
       e_process "Installing Ruby $ruby_version ..."
 
