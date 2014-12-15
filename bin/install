@@ -72,7 +72,7 @@ run_osx
 
 
 # Check for Homebrew
-if ! type_exists 'brew'; then
+if [ ! type_exists 'brew' ]; then
     e_process "Installing Homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -117,7 +117,7 @@ fi
 e_process "Installing ruby & gem files"
 
 # Check for rbenv
-if type_exists 'rbenv'; then
+if [ type_exists 'rbenv' ]; then
 
     # Install Ruby
     run_ruby
@@ -139,21 +139,18 @@ fi
 e_process "Installing npm & packages"
 
 # Check for npm
-if ! type_exists 'npm'; then
+if [ ! type_exists 'npm' ]; then
 
     # Install npm
     run_npm
     printf 'export PATH="$HOME/.node/bin:$PATH"\n' >> ~/.zshrc
 
-<<<<<<< HEAD
 else
     #printf "\n"
     #e_error "Error: npm not found."
     #printf "Aborting...\n"
     #exit
     printf ''
-=======
->>>>>>> 54f6cd21215020c0cb0efcc5b11f8462e5e7b028
 fi
 
 
