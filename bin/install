@@ -60,9 +60,6 @@ if ! type_exists 'gcc'; then
     exit 1
 fi
 
-e_process "Installing osx customizations"
-run_osx
-
 
 #     __  __                     __
 #    / / / /___  ____ ___  ___  / /_  ________ _      __
@@ -144,12 +141,6 @@ if ! type_exists 'npm'; then
     run_npm
     printf 'export PATH="$HOME/.node/bin:$PATH"\n' >> ~/.zshrc
 
-else
-    #printf "\n"
-    #e_error "Error: npm not found."
-    #printf "Aborting...\n"
-    #exit
-    printf ''
 fi
 
 
@@ -168,13 +159,16 @@ seek_confirmation "This step may overwrite your existing macbook"
 
 if is_confirmed; then
     # Symlink all necessary files
-#    homesick clone ${GITHUB_USER}/macbook
- #   homesick symlink macbook
+    homesick clone ${GITHUB_USER}/macbook
+    homesick symlink macbook
 
     e_success "All files have been symlinked"
 
     # Setup git authorship
     setup_git_author
+
+    e_process "Installing osx customizations"
+		run_osx
 
 else
     e_error "This step is required.  When you're ready, run this script to start up again"
@@ -209,9 +203,19 @@ if is_confirmed; then
     e_warning "Please consider using cask commands for Updating/Upgrading or Uninstalling a Mac OS X Application"
 fi
 
-e_process "Installing vim"
+#         _
+#  __   _(_)_ __ ___
+#  \ \ / / | '_ ` _ \
+#   \ V /| | | | | | |
+#    \_/ |_|_| |_| |_|
+#
+#  install vim
+if [[ ! -d "${HOME}/.spf13-vim3" ]]; then
 
-curl http://j.mp/spf13-vim3 -L -o - | sh
+	e_process "Installing vim"
+	curl http://j.mp/spf13-vim3 -L -o - | sh
+
+fi
 
 
 figlet -k 'Finished! WOOHOO!!!'
