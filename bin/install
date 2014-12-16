@@ -159,8 +159,8 @@ seek_confirmation "This step may overwrite your existing macbook"
 
 if is_confirmed; then
     # Symlink all necessary files
-    homesick clone ${GITHUB_USER}/macbook
-    homesick symlink macbook
+    homesick clone ${GITHUB_USER}/dotfiles
+    homesick symlink dotfiles
 
     e_success "All files have been symlinked"
 
