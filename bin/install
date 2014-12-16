@@ -167,11 +167,24 @@ if is_confirmed; then
     # Setup git authorship
     setup_git_author
 
-    e_process "Installing osx customizations"
-		run_osx
+   
 
 else
     e_error "This step is required.  When you're ready, run this script to start up again"
+fi
+
+#         _
+#  __   _(_)_ __ ___
+#  \ \ / / | '_ ` _ \
+#   \ V /| | | | | | |
+#    \_/ |_|_| |_| |_|
+#
+#  install vim
+if [[ ! -d "${HOME}/.spf13-vim3" ]]; then
+
+	e_process "Installing vim"
+	curl http://j.mp/spf13-vim3 -L -o - | sh
+
 fi
 
 #    ____  _____    _  __    ___
@@ -201,23 +214,10 @@ if is_confirmed; then
     e_success "All Mac OS X Applications have been installed"
 
     e_warning "Please consider using cask commands for Updating/Upgrading or Uninstalling a Mac OS X Application"
+
+     e_process "Installing osx customizations"
+     run_osx
+     
+     
 fi
 
-#         _
-#  __   _(_)_ __ ___
-#  \ \ / / | '_ ` _ \
-#   \ V /| | | | | | |
-#    \_/ |_|_| |_| |_|
-#
-#  install vim
-if [[ ! -d "${HOME}/.spf13-vim3" ]]; then
-
-	e_process "Installing vim"
-	curl http://j.mp/spf13-vim3 -L -o - | sh
-
-fi
-
-
-figlet -k 'Finished! WOOHOO!!!'
-
-e_success "Your MAC is ready to rock!"
