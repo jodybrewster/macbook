@@ -27,6 +27,9 @@ run_osx() {
 	# Disable the sound effects on boot
 	sudo nvram SystemAudioVolume=" "
 
+	# Change the menu bar to the dark style
+
+
 	# Disable transparency in the menu bar and elsewhere on Yosemite
 	defaults write com.apple.universalaccess reduceTransparency -bool true
 
@@ -186,13 +189,13 @@ run_osx() {
 	# Set language and text formats
 	# Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 	# `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-	defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-	defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
+	defaults write NSGlobalDomain AppleLanguages -array "en" "us"
+	defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
 	defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 	defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 	# Set the timezone; see `sudo systemsetup -listtimezones` for other values
-	sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
+	sudo systemsetup -settimezone "America/New_York" > /dev/null
 
 	# Disable auto-correct
 	defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -289,26 +292,26 @@ run_osx() {
 
 	# Show item info near icons on the desktop and in other icon views
 	/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-	/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+	#/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
 	/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
 
 	# Show item info to the right of the icons on the desktop
-	/usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
+	/usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom true" ~/Library/Preferences/com.apple.finder.plist
 
 	# Enable snap-to-grid for icons on the desktop and in other icon views
 	/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-	/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+	#/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 	/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 	# Increase grid spacing for icons on the desktop and in other icon views
-	/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
-	/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
-	/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
+	/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 90" ~/Library/Preferences/com.apple.finder.plist
+	#/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 90" ~/Library/Preferences/com.apple.finder.plist
+	/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 90" ~/Library/Preferences/com.apple.finder.plist
 
 	# Increase the size of icons on the desktop and in other icon views
-	/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
-	/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
-	/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
+	/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 40" ~/Library/Preferences/com.apple.finder.plist
+	#/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 40" ~/Library/Preferences/com.apple.finder.plist
+	/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 40" ~/Library/Preferences/com.apple.finder.plist
 
 	# Use list view in all Finder windows by default
 	# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
@@ -328,10 +331,6 @@ run_osx() {
 
 	# Show the ~/Library folder
 	chflags nohidden ~/Library
-
-	# Remove Dropbox’s green checkmark icons in Finder
-	file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
-	[ -e "${file}" ] && mv -f "${file}" "${file}.bak"
 
 	# Expand the following File Info panes:
 	# “General”, “Open with”, and “Sharing & Permissions”
@@ -564,10 +563,10 @@ run_osx() {
 	defaults write com.apple.terminal StringEncodings -array 4
 
 	# Use a modified version of the Solarized Dark theme by default in Terminal.app
-	TERM_PROFILE='Solarized Dark xterm-256color';
+	TERM_PROFILE='mine';
 	CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
 	if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-		open "${HOME}/init/${TERM_PROFILE}.terminal";
+		open "${HOME}/.macbook/terminal/${TERM_PROFILE}.terminal";
 		sleep 1; # Wait a bit to make sure the theme is loaded
 		defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
 		defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
@@ -579,7 +578,7 @@ run_osx() {
 	#defaults write org.x.X11 wm_ffm -bool true
 
 	# Install the Solarized Dark theme for iTerm
-	open "${HOME}/init/Solarized Dark.itermcolors"
+	open "${HOME}/.macbook/terminal/mine.itermcolors"
 
 	# Don’t display the annoying prompt when quitting iTerm
 	defaults write com.googlecode.iterm2 PromptOnQuit -bool false
