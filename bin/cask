@@ -2,12 +2,14 @@
 
 # Install native apps
 run_apps() {
-	
+	brew install phinze/cask/brew-cask
+	brew tap caskroom/versions
+
 	# browser
 	brew cask install firefox
 	brew cask install google-chrome
 	brew cask install google-chrome-canary
-	brew cask install opera-next
+	brew cask install opera-developer
 	brew cask install Firefoxdeveloperedition
 
 	# apps!
