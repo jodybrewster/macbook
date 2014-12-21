@@ -48,6 +48,7 @@ run_brew() {
 	#tmux
 	brew install tmux
 	brew install reattach-to-user-namespace
+	gem install tmuxinator
 
 	# docker 
 	brew install docker
