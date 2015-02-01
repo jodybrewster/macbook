@@ -78,29 +78,26 @@ if ! type_exists 'brew'; then
     run_brew
 fi
 
-#          __                                          __
-#   ____  / /_        ____ ___  __  __     ____  _____/ /_
-#  / __ \/ __ \______/ __ `__ \/ / / /____/_  / / ___/ __ \
-# / /_/ / / / /_____/ / / / / / /_/ /_____// /_(__  ) / / /
-# \____/_/ /_/     /_/ /_/ /_/\__, /      /___/____/_/ /_/
-#                            /____/
+#                      _        
+#                     | |       
+#   _ __  _ __ ___ ___| |_ ___  
+#  | '_ \| '__/ _ \_  / __/ _ \ 
+#  | |_) | | |  __// /| || (_) |
+#  | .__/|_|  \___/___|\__\___/ 
+#  | |                          
+#  |_|                                                  
 
-if ! -d "${HOME}/.oh-my-zsh"; then
-    e_process "Installing oh-my-zsh"
+if ! -d "${HOME}/.zprezto"; then
+    e_process "Installing prezto"
 
-    #Install oh-my-zsh
-    curl -L http://install.ohmyz.sh | sh
+    #Install prezto
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
-    #setup rbenv
-    if ! grep -qs "rbenv init" ~/.zshrc; then
-        printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.zshrc
-        printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.zshrc
-
-        e_process "Enable shims and autocompletion ..."
-        eval "$(rbenv init - --no-rehash)"
-    fi
-
-    export PATH="$HOME/.rbenv/bin:$PATH"
+    setopt EXTENDED_GLOB
+    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    done
+    chsh -s /bin/zsh
 fi
 
 #     ____        __
