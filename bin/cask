@@ -46,7 +46,7 @@ run_apps() {
 	brew cask install vlc
 	brew cask install vagrant
 	brew cask install unity
-	
+	brew cask install slack
 	
 	brew cask alfred link
 }
