@@ -185,17 +185,6 @@ if [[ ! -d "${HOME}/.spf13-vim3" ]]; then
 fi
 
 
-#                  _           _     _
-#   __ _ _ __   __| |_ __ ___ (_) __| |
-#  / _` | '_ \ / _` | '__/ _ \| |/ _` |
-# | (_| | | | | (_| | | | (_) | | (_| |
-#  \__,_|_| |_|\__,_|_|  \___/|_|\__,_|
-#
-if [[ ! -d "${HOME}/.android-sdk-installer" ]]; then
-	e_process "Installing android"
-	curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=build-tools-18.1.0,android-17,sys-img-armeabi-v7a-android-17 && source ~/.android-sdk-installer/env
-fi
-
 
 #    ____  _____    _  __    ___
 #   / __ \/ ___/   | |/ /   /   |  ____  ____  _____
