@@ -207,9 +207,6 @@ if is_confirmed; then
     e_process "Installing Mac OS X Quick Look plugins for developers"
     run_ql
 
-    e_process "Installing ST2 plugins"
-    run_subl
-
     e_success "All Mac OS X Applications have been installed"
 
     e_warning "Please consider using cask commands for Updating/Upgrading or Uninstalling a Mac OS X Application"
