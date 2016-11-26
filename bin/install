@@ -86,20 +86,20 @@ fi
 #  | |                          
 #  |_|                                                  
 
-if ! -d "${HOME}/.zprezto"; then
-    e_process "Installing prezto"
+#if ! -d "${HOME}/.zprezto"; then
+#    e_process "Installing prezto"
 
-    /usr/bin/zsh <<'EOF'
-    #Install prezto
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+#/usr/bin/zsh <<'EOF'
+#Install prezto
+#git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
-    setopt EXTENDED_GLOB
-    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-    done
-    chsh -s /bin/zsh
-    EOF
-fi
+#setopt EXTENDED_GLOB
+#for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+#ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+#done
+#chsh -s /bin/zsh
+#EOF
+#fi
 
 #     ____        __
 #    / __ \__  __/ /_  __  __
