@@ -57,7 +57,9 @@ run_brew() {
 	# install mac app store - https://github.com/mas-cli/mas
 	brew install mas
 
+	
 	#android
+	brew cask install java
 	brew install ant
 	brew install maven
 	brew install gradle
