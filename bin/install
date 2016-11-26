@@ -89,6 +89,7 @@ fi
 if ! -d "${HOME}/.zprezto"; then
     e_process "Installing prezto"
 
+    /usr/bin/zsh <<'EOF'
     #Install prezto
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
@@ -97,6 +98,7 @@ if ! -d "${HOME}/.zprezto"; then
       ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
     done
     chsh -s /bin/zsh
+    EOF
 fi
 
 #     ____        __
