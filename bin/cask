@@ -41,7 +41,7 @@ run_apps() {
 	brew cask install virtualbox
 	brew cask install vlc
 	brew cask install vagrant
-	brew cask install vscode
+	brew cask install visual-studio-code
 	brew cask install unity
 	brew cask install slack
 	
