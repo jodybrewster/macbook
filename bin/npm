@@ -8,14 +8,10 @@ run_npm() {
 
 	rm -rf /usr/local/lib/node_modules
 	brew uninstall node
-	brew install node --without-npm
-	echo prefix=~/.node >> ~/.npmrc
-	curl -L https://www.npmjs.org/install.sh | sh
-	export PATH="$HOME/.node/bin:$PATH"
+	brew install node
 
 	npm update
 
-	npm install coffee-script -g
 	npm install less -g
 	npm install express -g
 	npm install grunt-cli -g
