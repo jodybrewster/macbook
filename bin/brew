@@ -53,6 +53,9 @@ run_brew() {
 
 	#ios
 	brew install xctool
+	
+	# install mac app store - https://github.com/mas-cli/mas
+	brew install mas
 
 	#android
 	brew install ant
