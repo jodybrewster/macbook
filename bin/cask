@@ -26,11 +26,10 @@ run_apps() {
 	brew cask install dropbox
 	brew cask install evernote
 	brew cask install filezilla
-	brew cask install github
+	brew cask install github-desktop
 	brew cask install google-chrome
 	brew cask install google-drive
-	brew cask install iphone-configuration-utility
-	brew cask install intellij-idea-community-eap
+	brew cask install intellij-idea
 	brew cask install iterm2
 	brew cask install mou
 	brew cask install sequel-pro
