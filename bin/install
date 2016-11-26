@@ -49,13 +49,12 @@ source ./bin/npm
 source ./lib/git
 source ./lib/ruby
 source ./lib/utils
-source ./lib/sublime
 source ./bin/osx
 
 # Before relying on Homebrew, check that packages can be compiled
 if ! type_exists 'gcc'; then
     e_error "The XCode Command Line Tools must be installed first."
-    printf "  run 'xcode-select --install' and follow the instrucctions\n"
+    printf "  run 'xcode-select --install' and follow the instructions\n"
     printf "  Then run this setup script again.\n"
     exit 1
 fi
