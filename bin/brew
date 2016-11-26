@@ -50,9 +50,6 @@ run_brew() {
 	brew install reattach-to-user-namespace
 	gem install tmuxinator
 
-	# docker 
-	brew install docker
-	brew install boot2docker
 
 	#ios
 	brew install xctool
