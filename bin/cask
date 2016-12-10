@@ -32,6 +32,7 @@ run_apps() {
 	brew cask install intellij-idea
 	brew cask install iterm2
 	brew cask install mou
+	brew cask install p4merge
 	brew cask install sequel-pro
 	brew cask install sourcetree
 	brew cask install skype
