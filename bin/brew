@@ -12,6 +12,8 @@ run_brew() {
 
 	brew tap thoughtbot/formulae
 	brew install gitsh	
+	brew install git-credential-manager
+	brew install hub
 
 	brew tap caskroom/cask
 	brew install brew-cask
@@ -32,27 +34,29 @@ run_brew() {
 
 
 	brew link openssl --force
+	
+	brew install kubernetes-cli
+	brew install kubernetes-helm
 
 
 	# misc
-	brew install node
-	brew install autoconf
-	brew install mongodb		
-	brew install ossp-uuid	
-	brew install pkg-config
-	brew install postgresql
+	brew install nvm
 	brew install python --universal --framework
-	brew install nginx
-	brew install redis
+	brew install imagemagick
+	brew install wget
+
 
 	#tmux
 	brew install tmux
 	brew install reattach-to-user-namespace
 	gem install tmuxinator
+	
 
 
 	#ios
 	brew install xctool
+	brew install cocoapods
+	
 	
 	# install mac app store - https://github.com/mas-cli/mas
 	brew install mas
