@@ -220,20 +220,13 @@ fi
 
 e_process "git config"
 
-# add p4merge to git config
 # git configuration
 git config --global user.name "Jody Brewster"
 git config --global user.email "jodybrewster@gmail.com"
 git config --global push.default current
 git config --global core.safecrlf false
 git config --global merge.keepBackup false;
-git config --global merge.tool p4merge;
-git config --global mergetool.p4merge.cmd p4merge "\"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\""
-git config --global mergetool.p4merge.keepTemporaries false
-git config --global mergetool.p4merge.trustExitCode false
-git config --global mergetool.p4merge.keepBackup false
-git config --global mergetool.p4merge.prompt false
-git config --global mergetool.keepBackup false
+
 
 
 ssh-keygen -t rsa -C "jodybrewster@gmail.com"
