@@ -22,6 +22,7 @@ run_brew() {
 
 	brew install bash
 	brew install zsh
+	brew install zsh zsh-completions
 
 	brew install wget --enable-iri
 
