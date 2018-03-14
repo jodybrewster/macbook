@@ -185,6 +185,9 @@ run_osx() {
 	# Follow the keyboard focus while zoomed in
 	defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
+	# Disable Slow Keys.
+	defaults write com.apple.universalaccess slowKey -int 0
+
 	# Disable press-and-hold for keys in favor of key repeat
 	defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
