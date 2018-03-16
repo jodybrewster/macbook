@@ -13,8 +13,7 @@ run_apps() {
 	brew cask install firefoxdeveloperedition
 
 	# apps!
-	brew cask install android-sdk
-	brew cask install android-ndk
+	
 	brew cask install adium
 	brew cask install alfred
 	brew cask install android-file-transfer
@@ -48,6 +47,9 @@ run_apps() {
 	brew cask install visual-studio-code
 	brew cask install unity
 	brew cask install slack
+	
+	brew cask install android-sdk
+	brew cask install android-ndk
 	
 	
 	brew cask alfred link
