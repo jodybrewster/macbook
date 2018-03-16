@@ -44,6 +44,7 @@ run_apps() {
 	brew cask install slack
 	
 	sdkmanager "platforms;android-26"
+	sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 	
 	brew cask alfred link
 }
