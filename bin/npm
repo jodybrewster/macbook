@@ -16,5 +16,6 @@ run_npm() {
 	npm install react-native -g	
 	npm install ionic -g
 	npm install gulp -g
+	npm install ios-deploy -g
 	
 }
