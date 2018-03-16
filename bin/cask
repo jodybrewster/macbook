@@ -43,5 +43,7 @@ run_apps() {
 	brew cask install unity
 	brew cask install slack
 	
+	sdkmanager "platforms;android-26"
+	
 	brew cask alfred link
 }
