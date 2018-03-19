@@ -38,7 +38,7 @@ run_brew() {
 	brew install kubernetes-cli
 	brew install kubernetes-helm
 	brew install kubectx
-
+	brew install minikube
 
 	# misc
 	brew install nvm
