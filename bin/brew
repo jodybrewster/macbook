@@ -37,6 +37,7 @@ run_brew() {
 	
 	brew install kubernetes-cli
 	brew install kubernetes-helm
+	brew install kubectx
 
 
 	# misc
