@@ -41,7 +41,6 @@ run_brew() {
 	brew install minikube
 
 	# misc
-	brew install nvm
 	brew install python --universal --framework
 	brew install imagemagick
 	brew install wget
@@ -52,7 +51,9 @@ run_brew() {
 	brew install reattach-to-user-namespace
 	gem install tmuxinator
 	
-
+	#js
+	brew install nvm
+	brew install watchman
 
 	#ios
 	brew install xctool
