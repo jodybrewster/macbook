@@ -22,6 +22,7 @@ run_apps() {
 	brew cask install docker-edge
 	brew cask install dropbox
 	brew cask install evernote
+	brew cask install fastlane
 	brew cask install filezilla
 	brew cask install github-desktop
 	brew cask install google-drive
