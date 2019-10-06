@@ -6,16 +6,14 @@ run_npm() {
 	# Sets your user account as the owner of the /usr/local directory to avoid managing packages with sudo
 	sudo chown -R $USER /usr/local
 	
-	nvm install 4 --lts
-	nvm install 6 --lts
-	nvm install 8 --lts
+	nvm install 10 --lts
+	nvm install 12 --lts
 
 	npm update
 
-	npm install express -g
-	npm install react-native -g	
-	npm install ionic -g
-	npm install gulp -g
-	npm install ios-deploy -g
+	npm i -g react-native	
+	npm i -g ionic
+	npm i -g ios-deploy
+	npm i -g yarn
 	
 }
