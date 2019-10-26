@@ -42,7 +42,7 @@ run_apps() {
 	brew cask install unity
 	brew cask install slack
 	
-	sdkmanager "platforms;android-26"
+	sdkmanager "platforms;android-28"
 	sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 	
 }
