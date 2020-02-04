@@ -11,8 +11,7 @@ run_npm() {
 
 	npm update
 
-	npm i -g react-native	
-	npm i -g ionic
+	npm i -g @react-native-community/cli
 	npm i -g ios-deploy
 	npm i -g yarn
 	
