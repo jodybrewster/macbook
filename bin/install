@@ -98,6 +98,11 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
     ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 chsh -s /bin/zsh
+
+# add powerlevel10k theme from https://github.com/romkatv/powerlevel10k#oh-my-zsh also installing this from homebrew
+echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
+
+
 EOF
 fi
 
