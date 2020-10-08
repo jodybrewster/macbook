@@ -8,6 +8,8 @@ run_npm() {
 	
 	nvm install 10 --lts
 	nvm install 12 --lts
+	
+	nvm alias default 12
 
 	npm update
 
