@@ -11,8 +11,9 @@ run_npm() {
 
 	npm update
 
-	npm i -g @react-native-community/cli
-	npm i -g ios-deploy
+	npm i -g expo-cli
+	npm i -g localtunnel
 	npm i -g yarn
+	npm i -g knex
 	
 }
