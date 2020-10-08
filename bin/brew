@@ -70,6 +70,10 @@ run_brew() {
 	brew install ant
 	brew install maven
 	brew install gradle
+	
+	#zsh theme https://github.com/romkatv/powerlevel10k#oh-my-zsh
+	brew install romkatv/powerlevel10k/powerlevel10k
+	echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
 
 
 	# Remove outdated versions from the cellar
