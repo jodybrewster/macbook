@@ -15,6 +15,8 @@ run_apps() {
 	# apps!
 	brew cask install android-file-transfer
 	brew cask install android-studio
+	brew cask install azure-cli
+	brew cask install azure-data-studio
 	brew cask install charles
 	brew cask install dash
 	brew cask install docker-edge
@@ -30,6 +32,7 @@ run_apps() {
 	brew cask install mou
 	brew cask install p4merge
 	brew cask install sequel-pro
+	brew cask install sfdx
 	brew cask install sourcetree
 	brew cask install skype
 	brew cask install spotify
