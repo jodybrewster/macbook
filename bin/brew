@@ -44,6 +44,8 @@ run_brew() {
 	brew install python --universal --framework
 	brew install imagemagick
 	brew install wget
+	brew install azure-cli
+
 
 
 	#tmux
