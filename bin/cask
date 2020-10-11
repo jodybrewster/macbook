@@ -28,6 +28,7 @@ run_apps() {
 	brew cask install intellij-idea
 	brew cask install iterm2
 	brew cask install java8
+	brew cask install microsoft-azure-storage-explorer
 	brew cask install mou
 	brew cask install p4merge
 	brew cask install sequel-pro
